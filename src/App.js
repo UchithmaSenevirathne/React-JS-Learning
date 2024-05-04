@@ -7,21 +7,37 @@ import {Accordion} from "react-bootstrap/Accordion";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import Main from "./components/Main";
 
+// ===========11===================
+const myData = [
+    {
+        name: 'uchi',
+        city: 'galle',
+    } ,
+    {
+        name: 'tharu',
+        city: 'colombo',
+    } ,
+    {
+        name: 'sarasi',
+        city: 'matara',
+    } ,
+]
 function App() {
     // ===06,09===
     // let count = 0;   //is not using
-    const [count, setCount] = useState(0);
+    // const [count, setCount] = useState(0);
 
     //to increment
-    const increment = () =>{
-        setCount(count+1)
-    }
+    // const increment = () =>{
+    //     setCount(count+1)
+    // }
 
     //to decrement
-    const decrement = () =>{
-        setCount(count-1)
-    }
+    // const decrement = () =>{
+    //     setCount(count-1)
+    // }
 
     // =====08==========
     // function buttonClick(){
@@ -30,25 +46,26 @@ function App() {
     // }
 
     //
-    useEffect(() => {
-        //what i want to do as a side effect
-        console.log(`new count is: ${count}`)
-    }, [count] //dependancy array
-    );
+    // useEffect(() => {
+    //     //what i want to do as a side effect
+    //     console.log(`new count is: ${count}`)
+    // }, [count] //dependancy array
+    // );
   return (
+      <>
       <div>
           {/*====01,02,03,04====*/}
           {/*<Home/>*/}
 
           {/*=======05==============*/}
-          <h1>Static Content</h1>
-          <BrowserRouter>
-              <Routes>
-                  <Route path="/" element={<Home/>}></Route>
-                  <Route path="/About" element={<About/>}></Route>
-                  <Route path="/Contact" element={<Contact/>}></Route>
-              </Routes>
-          </BrowserRouter>
+          {/*<h1>Static Content</h1>*/}
+          {/*<BrowserRouter>*/}
+          {/*    <Routes>*/}
+          {/*        <Route path="/" element={<Home/>}></Route>*/}
+          {/*        <Route path="/About" element={<About/>}></Route>*/}
+          {/*        <Route path="/Contact" element={<Contact/>}></Route>*/}
+          {/*    </Routes>*/}
+          {/*</BrowserRouter>*/}
 
           {/*=======06.usestate=====*/}
           {/*<>*/}
@@ -72,8 +89,17 @@ function App() {
           {/*<h1>Count: {count}</h1>*/}
           {/*<button className="button" onClick={decrement}>-</button>*/}
           {/*<button className="button" onClick={increment}>+</button>*/}
+
+          {/*============10.object distructuring=====*/}
+          {/*<Main name="uchi" city="matara" position="dev"/>*/}
       </div>
-  )
+
+          {/*========11.array looping========*/}
+          {myData.map(({name, city}, index)=>{
+              return <Main key={index} name={name} city={city}/>;
+          })}
+      </>
+  );
 }
 
 export default App;
