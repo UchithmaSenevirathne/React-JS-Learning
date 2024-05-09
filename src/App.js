@@ -218,9 +218,10 @@
 
 // ==========15=======01.prac - usage of useState===============================================
 
-import {useState} from "react";
+import {Fragment, useEffect, useState} from "react";
 import './App.css';
 import Unit from "./components/Unit";
+import Header from "./components/Header";
 
 const App = () => {
     // state keepayak use krl
@@ -240,81 +241,114 @@ const App = () => {
 
     // console.log(myData);
 
+    // ==================17.usage of useEffect=============================
+    // server side ekt request yaddi useweno.data ekk change wuna gamn ekt anuwa request yanna
+
+    // useEffect(() => {
+    //     console.log('use effect calling..')
+    // }, [inputData.name, inputData.city]);
+
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth)
+
+    // width wenas karaddi wenas wenna
+    useEffect(() => {
+        const changeWindowWidth = () => {
+            setWindowWidth(window.innerWidth);
+        };
+
+        window.addEventListener('resize', changeWindowWidth);
+
+        console.log('use effect calling');
+
+        // ========cleanup process====
+        return ()=>{
+            console.log('use effect cleanup function running')
+
+            window.removeEventListener('resize', changeWindowWidth)
+        }
+    }, [inputData.name]);
+
     return(
-        <div className="main_container">
-            <div className="main_left">
-                <input type='text' value={inputData.imageUrl} placeholder='imageUrl' onChange={(e)=>{
-                    e.preventDefault()
-                    setInputData(preInputData=>({
-                       ...preInputData,
-                       imageUrl: e.target.value
-                    }));
-                }}/>
-                <input type='text' value={inputData.name} placeholder='your name' onChange={(e)=>{
-                    e.preventDefault()
-                    setInputData(preInputData=>({
-                        ...preInputData,
-                        name: e.target.value
-                    }));
-                }}/>
-                <input type='text' value={inputData.city} placeholder='your city' onChange={(e)=>{
-                    e.preventDefault()
-                    setInputData(preInputData=>({
-                        ...preInputData,
-                        city: e.target.value
-                    }));
-                }}/>
-                <button onClick={()=>{
-                    // console.log({
-                    //     imageUrl,
-                    //     name,
-                    //     city,
-                    // });
-                    setMyData((pre)=>[
-                        ...pre,
-                        {
-                            image: inputData.imageUrl,
-                            name: inputData.name,
-                            city: inputData.city,
-                        },
-                    ]);
+        <div>
+            {/*=16=======02.prac - responsive nav bar===========*/}
+            <Header/>
+            {/*======*/}
+            <div className="main_container">
+                <h1>{windowWidth}</h1>
+                <div className="main_left">
+                    <input type='text' value={inputData.imageUrl} placeholder='imageUrl' onChange={(e)=>{
+                        e.preventDefault()
+                        setInputData(preInputData=>({
+                           ...preInputData,
+                           imageUrl: e.target.value
+                        }));
+                    }}/>
+                    <input type='text' value={inputData.name} placeholder='your name' onChange={(e)=>{
+                        e.preventDefault()
+                        setInputData(preInputData=>({
+                            ...preInputData,
+                            name: e.target.value
+                        }));
+                    }}/>
+                    <input type='text' value={inputData.city} placeholder='your city' onChange={(e)=>{
+                        e.preventDefault()
+                        setInputData(preInputData=>({
+                            ...preInputData,
+                            city: e.target.value
+                        }));
+                    }}/>
+                    <button onClick={()=>{
+                        // console.log({
+                        //     imageUrl,
+                        //     name,
+                        //     city,
+                        // });
+                        setMyData((pre)=>[
+                            ...pre,
+                            {
+                                image: inputData.imageUrl,
+                                name: inputData.name,
+                                city: inputData.city,
+                            },
+                        ]);
 
-                    // 1 kramaya- input fields clear karanna
-                    setInputData((pre)=>{
-                        if(pre.imageUrl.length>0){
-                            return {
-                                ...pre,
-                                imageUrl: ''
-                            };
-                        }else{
-                            return pre;
-                        }
-                    });
+                        // 1 kramaya- input fields clear karanna
+                        setInputData((pre)=>{
+                            if(pre.imageUrl.length>0){
+                                return {
+                                    ...pre,
+                                    imageUrl: ''
+                                };
+                            }else{
+                                return pre;
+                            }
+                        });
 
-                    // above 1 kramayama short krl| 'pre' use karana eka athyawashya na.pre wenuwata onekak danna puluwan
-                    setInputData((uchi)=> (uchi.name.length>0 ? ({
-                        ...uchi,
-                        name: '',
-                    }) : uchi));
-                    setInputData((preCity)=>(preCity.length>0 ? ({
-                        ...preCity,
-                        city: '',
-                    }) : preCity));
+                        // above 1 kramayama short krl| 'pre' use karana eka athyawashya na.pre wenuwata onekak danna puluwan
+                        setInputData((uchi)=> (uchi.name.length>0 ? ({
+                            ...uchi,
+                            name: '',
+                        }) : uchi));
+                        setInputData((preCity)=>(preCity.length>0 ? ({
+                            ...preCity,
+                            city: '',
+                        }) : preCity));
 
-                }}>Submit</button>
+                    }}>Submit</button>
+                </div>
+                <div className="main_right">
+                    {myData?.map(({image,name,city}, index)=> <Unit
+                        image={image}
+                        name={name}
+                        city={city}
+                        key={index}
+                    />)}
+                </div>
             </div>
-            <div className="main_right">
-                {myData?.map(({image,name,city}, index)=> <Unit
-                    image={image}
-                    name={name}
-                    city={city}
-                    key={index}
-                />)}
-            </div>
+
         </div>
     )
 }
 
 export default App;
 
-// ==========16=======02.prac - responsive nav bar===============================================
