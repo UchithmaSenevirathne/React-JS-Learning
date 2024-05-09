@@ -1,32 +1,59 @@
-.title {
-    font-size: 40px;
+/*.title {*/
+/*    font-size: 40px;*/
+/*}*/
+
+/*.subtitle {*/
+/*    font-size: 30px;*/
+/*}*/
+
+/*.button {*/
+/*    display: inline-block;*/
+/*    padding: 15px 25px;*/
+/*    font-size: 24px;*/
+/*    cursor: pointer;*/
+/*    text-align: center;*/
+/*    text-decoration: none;*/
+/*    outline: none;*/
+/*    color: white;*/
+/*    background-color: lightgreen;*/
+/*    border: none;*/
+/*    border-radius: 15px;*/
+/*    box-shadow: 0 9px #999;*/
+/*}*/
+
+/*.button:hover {*/
+/*    background-color: mediumseagreen;*/
+/*}*/
+
+/*.button:active {*/
+/*    background-color: mediumseagreen;*/
+/*    box-shadow: 0 5px #666;*/
+/*    transform: translateY(4px);*/
+/*}*/
+
+.main_container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.subtitle {
-    font-size: 30px;
+.mainBlock_container {
+    width: 90%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    gap: 20px;
 }
 
-.button {
-    display: inline-block;
-    padding: 15px 25px;
-    font-size: 24px;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    outline: none;
-    color: white;
-    background-color: lightgreen;
-    border: none;
-    border-radius: 15px;
-    box-shadow: 0 9px #999;
+.mainBlock_container img {
+    width: 100%;
+    object-fit: contain;
 }
 
-.button:hover {
-    background-color: mediumseagreen;
+.mainBlock_container .mainBlock_details {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.button:active {
-    background-color: mediumseagreen;
-    box-shadow: 0 5px #666;
-    transform: translateY(4px);
-}
