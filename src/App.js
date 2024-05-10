@@ -2,7 +2,7 @@
 // import React, {useEffect, useState} from "react";
 // import './App.css';
 // import {Fragment} from "react";
-// import Home from "./pages/Home";
+// import HomeRouter from "./pages/HomeRouter";
 // import TopicBox from "./components/TopicBox";
 // import {Accordion} from "react-bootstrap/Accordion";
 // import {BrowserRouter, Route, Routes} from "react-router-dom";
@@ -122,13 +122,13 @@
 //       <div className="main_container">
 //           <div>
 //               {/*====01,02,03,04====*/}
-//               {/*<Home/>*/}
+//               {/*<HomeRouter/>*/}
 //
 //               {/*=======05==============*/}
 //               {/*<h1>Static Content</h1>*/}
 //               {/*<BrowserRouter>*/}
 //               {/*    <Routes>*/}
-//               {/*        <Route path="/" element={<Home/>}></Route>*/}
+//               {/*        <Route path="/" element={<HomeRouter/>}></Route>*/}
 //               {/*        <Route path="/About" element={<About/>}></Route>*/}
 //               {/*        <Route path="/Contact" element={<Contact/>}></Route>*/}
 //               {/*    </Routes>*/}
@@ -353,66 +353,118 @@ import Header from "./components/Header";
 // export default App;
 
 // ==================18.useEffect Practice================================
+// import "./App.css";
+//
+// const App = ()=>{
+//
+//     const [apiId, setApiId] = useState('1');
+//     const [search, setSearch] = useState(0);
+//     const [data, setData] = useState({});
+//
+//     // console.log(apiId)
+//     // console.log(data)
+//
+//     useEffect(() => {
+//         console.log('useEffect running..')
+//
+//         const apiCall = async ()=> {
+//             console.log('api call running..')
+//             const res = await fetch(
+//                 `https://jsonplaceholder.typicode.com/posts/${apiId}`
+//             );
+//             const data = await res.json();
+//
+//             if(data){
+//                 setData(data)
+//             }
+//         };
+//
+//         if(apiId.length > 0 && Number(apiId) > 0 && Number(apiId) <= 100){
+//             console.log('useEffect if condition ')
+//
+//             apiCall();
+//         }
+//
+//         return()=>{
+//             console.log('cleanup')
+//             apiCall();
+//         };
+//
+//         //eslint-disable-next-line
+//     }, [search]);
+//
+//     return(
+//         <div>
+//             <input
+//                 type='text'
+//                 placeholder='enter id'
+//                 value={apiId}
+//                 onChange={(e)=>setApiId(e.target.value)}
+//             />
+//
+//             <button
+//                 onClick={()=>setSearch(pre=>pre===0 ? 1 : 0)}>Search</button>
+//
+//             {data && (
+//                 <div>
+//                     <h2>{data.title}</h2>
+//                     <p>{data.body}</p>
+//                 </div>
+//             )}
+//         </div>
+//     );
+// }
+//
+// export default App;
+
+// ====================19. React routers=======================================
 import "./App.css";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import HomeRouter from "./components/HomeRouter";
+import AboutRouter from "./components/AboutRouter";
+import ContactRouter from "./components/ContactRouter";
+import ContactDetails from "./components/ContactDetails";
+import User from "./components/User";
+import {createBrowserRouter, RouterProvider} from  "react-router-dom";
 
-const App = ()=>{
-
-    const [apiId, setApiId] = useState('1');
-    const [search, setSearch] = useState(0);
-    const [data, setData] = useState({});
-
-    // console.log(apiId)
-    // console.log(data)
-
-    useEffect(() => {
-        console.log('useEffect running..')
-
-        const apiCall = async ()=> {
-            console.log('api call running..')
-            const res = await fetch(
-                `https://jsonplaceholder.typicode.com/posts/${apiId}`
-            );
-            const data = await res.json();
-
-            if(data){
-                setData(data)
-            }
-        };
-
-        if(apiId.length > 0 && Number(apiId) > 0 && Number(apiId) <= 100){
-            console.log('useEffect if condition ')
-
-            apiCall();
-        }
-
-        return()=>{
-            console.log('cleanup')
-            apiCall();
-        };
-
-        //eslint-disable-next-line
-    }, [search]);
-
+// const router = createBrowserRouter([
+//     {
+//         path: '/',
+//         element: <HomeRouter/>
+//     },
+//     {
+//         path: '/AboutRouter',
+//         element: <AboutRouter/>
+//     },
+//     {
+//         path: '/ContactRouter',
+//         element: <ContactRouter/>
+//     },
+//     {
+//         path: '/ContactDetails',
+//         element: <ContactDetails/>
+//     }
+// ])
+const App = () => {
     return(
-        <div>
-            <input
-                type='text'
-                placeholder='enter id'
-                value={apiId}
-                onChange={(e)=>setApiId(e.target.value)}
-            />
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<HomeRouter/>}/>
+                <Route path="/AboutRouter" element={<AboutRouter/>}/>
+                <Route path="/ContactRouter/Details" element={<ContactDetails/>}/>
+                <Route path="/ContactRouter" element={<ContactRouter/>}/>
 
-            <button
-                onClick={()=>setSearch(pre=>pre===0 ? 1 : 0)}>Search</button>
+                {/*url eka change weddi*/}
+                <Route path="/ContactRouter/:id" element={<User/>}/>
+            </Routes>
+        </BrowserRouter>
 
-            {data && (
-                <div>
-                    <h2>{data.title}</h2>
-                    <p>{data.body}</p>
-                </div>
-            )}
-        </div>
+        //==== 2 kramaya =====
+        // <div>
+        //RouterProvider not found in my react-router-dom version try another version or..
+        //     <RouterProvider router={router}/>
+        // </div>
     );
-}
+};
 
 export default App;
