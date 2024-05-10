@@ -1,32 +1,191 @@
-.title {
-    font-size: 40px;
+/*.title {*/
+/*    font-size: 40px;*/
+/*}*/
+
+/*.subtitle {*/
+/*    font-size: 30px;*/
+/*}*/
+
+/*.button {*/
+/*    display: inline-block;*/
+/*    padding: 15px 25px;*/
+/*    font-size: 24px;*/
+/*    cursor: pointer;*/
+/*    text-align: center;*/
+/*    text-decoration: none;*/
+/*    outline: none;*/
+/*    color: white;*/
+/*    background-color: lightgreen;*/
+/*    border: none;*/
+/*    border-radius: 15px;*/
+/*    box-shadow: 0 9px #999;*/
+/*}*/
+
+/*.button:hover {*/
+/*    background-color: mediumseagreen;*/
+/*}*/
+
+/*.button:active {*/
+/*    background-color: mediumseagreen;*/
+/*    box-shadow: 0 5px #666;*/
+/*    transform: translateY(4px);*/
+/*}*/
+
+/*.main_container {*/
+/*    width: 100%;*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    align-items: center;*/
+/*}*/
+
+/*.mainBlock_container {*/
+/*    width: 90%;*/
+/*    display: grid;*/
+/*    grid-template-columns: repeat(3, 1fr);*/
+/*    grid-template-rows: auto;*/
+/*    gap: 20px;*/
+/*}*/
+
+/*.mainBlock_container img {*/
+/*    width: 100%;*/
+/*    object-fit: contain;*/
+/*}*/
+
+/*.mainBlock_container .mainBlock_details {*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: space-between;*/
+/*}*/
+
+/*===========16===================*/
+.header_container {
+    width: 100vw;
+    padding: 20px;
+    margin-bottom: 100px;
+    background-color: floralwhite;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.subtitle {
-    font-size: 30px;
+.header_container nav{
+    position: relative;
 }
 
-.button {
-    display: inline-block;
-    padding: 15px 25px;
-    font-size: 24px;
+.header_container nav ul {
+    overflow: hidden;
+    position: absolute;
+    top: -22px;
+    right: -20px;
+    height: 100vh;
+    padding: 20px;
+    background-color: #fab2b2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    transition: all 400ms ease-in;
+}
+
+.header_container .header_menuClose {
     cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    outline: none;
-    color: white;
-    background-color: lightgreen;
-    border: none;
-    border-radius: 15px;
-    box-shadow: 0 9px #999;
 }
 
-.button:hover {
-    background-color: mediumseagreen;
+.header_container .header_menu {
+    margin: 50px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 40px;
 }
 
-.button:active {
-    background-color: mediumseagreen;
-    box-shadow: 0 5px #666;
-    transform: translateY(4px);
+.header_container nav ol {
+    display: none;
+}
+
+.header_container nav ul li {
+    cursor: pointer;
+    font-weight: 700;
+    transition: all 400ms ease-in;
+}
+
+.header_container nav ul li:hover {
+    color: red;
+}
+
+@media only screen and (min-width: 768px){
+
+    .header_container nav ul, .header_container nav .header_menuClick {
+        display: none;
+    }
+
+    .header_container nav ol {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .header_container nav ol li {
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 400ms ease-in;
+    }
+
+    .header_container nav ol li:hover {
+        color: red;
+    }
+}
+
+/*======15=====================*/
+.main_container {
+    margin: 0 auto;
+    width: 90%;
+    display: grid;
+    grid-template-columns: 40% 60%;
+    grid-template-rows: auto;
+}
+
+.main_container .main_left {
+    padding-right: 50px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.main_container .main_left input{
+    width: 100%;
+    padding: 7px;
+}
+
+.main_container .main_right {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    gap: 17px;
+}
+
+.main_container .main_right .unit_container p{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main_container .main_right .unit_container h3{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main_container .main_right .unit_container img{
+    width: 100%;
+    object-fit: contain;
 }
